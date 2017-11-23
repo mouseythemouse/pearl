@@ -3,6 +3,7 @@
 	"commands": {
 		"hello": "plugins/hello.py"
 		"dog": "plugins/dog.py"
+		"badword": "plugins/badword.py"
 	},
 	"format": "/pearl"
 }
