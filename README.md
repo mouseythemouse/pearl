@@ -1,3 +1,2 @@
 # pearl
-Google Hangouts bot
-Stolen from defund
+Google Hangouts bot stolen from defund
