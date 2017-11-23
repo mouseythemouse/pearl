@@ -11,8 +11,7 @@ class Bee:
 
 	@asyncio.coroutine
 	def handle(self, pearl, args, event):
-    alice = 'Alice likes'
-		bee = '🐝'
+  bee = 'Alice screws 🐝'
 		
 		request = hangups.hangouts_pb2.SendChatMessageRequest(
 			request_header=self.client.get_request_header(),
@@ -24,7 +23,6 @@ class Bee:
 			),
 			message_content=hangups.hangouts_pb2.MessageContent(
 				segment=[
-					hangups.ChatMessageSegment(alice).serialize()
           hangups.ChatMessageSegment(bee).serialize()
 				],
 			),
