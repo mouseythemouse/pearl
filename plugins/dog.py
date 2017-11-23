@@ -19,11 +19,9 @@ class Dog:
 				),
 				client_generated_id=self.client.get_client_generated_id(),
 			),
-			message_content=hangups.hangouts_pb2.MessageContent(
         self.client.send_message(dog)
-			),
 		)
-		yield from self.client.send_chat_message(request)
+		yield from self.client.send_chat_message(request,dog)
 
 def initialize(client):
 	return Dog(client)
