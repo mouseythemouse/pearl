@@ -1,3 +1,4 @@
+
 import asyncio
 
 import hangups
@@ -9,7 +10,7 @@ class Dog:
 
 	@asyncio.coroutine
 	def handle(self, pearl, args, event):
-  dog = self.client.upload_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Shiba_inu_taiki.jpg/220px-Shiba_inu_taiki.jpg")
+		dog = self.client.upload_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Shiba_inu_taiki.jpg/220px-Shiba_inu_taiki.jpg")
 		
 		request = hangups.hangouts_pb2.SendChatMessageRequest(
 			request_header=self.client.get_request_header(),
@@ -19,9 +20,13 @@ class Dog:
 				),
 				client_generated_id=self.client.get_client_generated_id(),
 			),
-        self.client.send_message(dog)
+			message_content=hangups.hangouts_pb2.MessageContent(
+				segment=[
+					hangups.UploadedImage(dog).serialize()
+				],
+			),
 		)
-		yield from self.client.send_chat_message(request,dog)
+		yield from self.client.send_chat_message(request)
 
 def initialize(client):
 	return Dog(client)
