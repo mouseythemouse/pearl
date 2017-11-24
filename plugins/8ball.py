@@ -12,7 +12,7 @@ class Ball:
 
 	@asyncio.coroutine
 	def handle(self, pearl, args, event):
-    responses = ["It is certain", "It is decidedly so", "Without a doubt", "Yes, definitely", "You may rely on it", "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Error: 404 not found", "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "My sources say no"]
+    responses = ["It is certain", "It is decidedly so", "Without a doubt", "Yes, definitely", "You may rely on it", "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Error: 404 not found", "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "0% chance"]
     ball = random.choice(responses)
 
 		
