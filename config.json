@@ -1,9 +1,31 @@
 {
 	"auth": "auth.json",
-	"commands": {
-		"hello": "plugins/hello.py"
-		"dog": "plugins/dog.py"
-		"badword": "plugins/badword.py"
-	},
-	"format": "/pearl"
+	"format": "/pearl",
+	"plugins": {
+		"8ball": {
+			"path": "plugins/eightball.py",
+			"help": "Receive fortune or advice",
+			"type": "command"
+		},
+		"about": {
+			"path": "plugins/about.py",
+			"help": "General information",
+			"type": "command"
+		},
+		"dog": {
+			"path": "plugins/dog.py",
+			"help": "Dog",
+			"type": "command"
+		},
+		"hello": {
+			"path": "plugins/hello.py",
+			"help": "Pearl greets you!",
+			"type": "command"
+		},
+		"help": {
+			"path": "plugins/help.py",
+			"help": "List usage and commands",
+			"type": "command"
+		}
+	}
 }
