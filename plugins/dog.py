@@ -1,18 +1,16 @@
 import asyncio
 import hangups
+import os
 
-from command import Command
+from interactive import Interactive
 
-class Dog(Command):
+class Dog(Interactive):
 
 	def __init__(self, pearl):
 		self.pearl = pearl
-		self.client = pearl.client
 
 	def handle(self, args, event):
-		dog = "pearl/plugins/220px-Shiba_inu_taiki.jpg"
-		
-		asyncio.run_coroutine_threadsafe(self.sendImage(dog, event.conversation_id.id), self.pearl.loop)
-
+		dog = os.path.join('plugins','220px-Shiba_inu_taiki.jpg')
+		asyncio.run_coroutine_threadsafe(self.sendImage(self.conversation(event=event),dog), self.pearl.loop)
 def initialize(pearl):
 	return Dog(pearl)

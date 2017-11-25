@@ -1,35 +1,19 @@
 import asyncio
-
 import hangups
 
-class Hello:
+from interactive import Interactive
 
-	def __init__(self, client):
-		self.client = client
+class Hello(Interactive):
 
-	@asyncio.coroutine
-	def handle(self, pearl, args, event):
+	def __init__(self, pearl):
+		self.pearl = pearl
+
+	def handle(self, args, event):
 		hello = 'Hello!'
-		gaia_id = event.sender_id.gaia_id
-		for user in pearl.users.get_all():
-			if user.id_.gaia_id == gaia_id:
-				hello = 'Hello ' + user.full_name.split()[0] + '!'
-		
-		request = hangups.hangouts_pb2.SendChatMessageRequest(
-			request_header=self.client.get_request_header(),
-			event_request_header=hangups.hangouts_pb2.EventRequestHeader(
-				conversation_id=hangups.hangouts_pb2.ConversationId(
-					id=event.conversation_id.id
-				),
-				client_generated_id=self.client.get_client_generated_id(),
-			),
-			message_content=hangups.hangouts_pb2.MessageContent(
-				segment=[
-					hangups.ChatMessageSegment(hello).serialize()
-				],
-			),
-		)
-		yield from self.client.send_chat_message(request)
+		name = self.user(uid=event.sender_id).full_name.split()[0]
+		hello = 'Hello ' + name + '!'
+				
+		asyncio.run_coroutine_threadsafe(self.send(self.conversation(event=event), hello), self.pearl.loop)
 
-def initialize(client):
-	return Hello(client)
+def initialize(pearl):
+	return Hello(pearl)
